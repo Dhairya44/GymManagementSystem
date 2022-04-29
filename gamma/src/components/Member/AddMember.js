@@ -5,7 +5,10 @@ import "./Member.css";
 import image from "../../Images/home1.jpeg"
 import image1 from "../../Images/addimage.png"
 import { Card } from "react-bootstrap";
+import Form from "react-validation/build/form";
+import { useRef } from "react";
 const AddMember = () => {
+  const form = useRef();
   const { id } = useParams();
   const initialMemberState = {
     Mem_ID: null,
@@ -42,7 +45,7 @@ const AddMember = () => {
       Emer_Mobile: member.Emer_Mobile
     };
 
-    if(window.confirm("Want to submit?")){
+    // if(window.confirm("Want to submit?")){
     MemberDataService.create(id, data)
       .then(response => {
         setMember({
@@ -64,15 +67,17 @@ const AddMember = () => {
         console.log(e);
       });
       setMember(initialMemberState);
-      window.location.reload();
-    }
+      // window.location.reload();
+    // }
   };
 
   return (
     <div>
       <img src={image} id="imgt2" />
-      <div className="member-submit-form" id="member" >
-      <Card style={{ height: '60rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '30px', background: 'transparent', borderColor: 'transparent' }}>
+      <div className="member-submit-form" id="member3" >
+      <Form onSubmit={saveMember} ref={form} style={{width: "320px", padding: "30px", paddingTop: "100px"}}>
+
+      <Card style={{ height: '45rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '30px', background: 'transparent', borderColor: 'transparent' }}>
           <div>
             <div className="form-group">
               <br />
@@ -91,7 +96,7 @@ const AddMember = () => {
             </div>
 
             <div className="form-group">
-              <label className="lab" htmlFor="Mem_Weight" align="center">Weight</label>
+              <label className="lab" htmlFor="Mem_Weight" align="center">Weight (in kgs)</label>
               <input
                 type="number"
                 className="form-control int"
@@ -103,7 +108,7 @@ const AddMember = () => {
               />
             </div>
             <div className="form-group">
-              <label className="lab" htmlFor="Mem_Height" align="center">Height</label>
+              <label className="lab" htmlFor="Mem_Height" align="center">Height (in cms)</label>
               <input
                 type="number"
                 className="form-control int"
@@ -126,18 +131,22 @@ const AddMember = () => {
                 name="Age"
               />
             </div>
-            <div className="form-group">
-              <label className="lab" htmlFor="Gender" align="center">Gender</label>
-              <input
-                type="text"
-                className="form-control int"
-                id="Gender"
-                required
-                value={member.Gender}
-                onChange={handleInputChange}
-                name="Gender"
-              />
-            </div>
+        <div className="form-group">
+          <label className="lab" align = "center" htmlFor="Gender">Gender</label>
+        <select className="form-control int" name="Gender" required value={member.Gender} onChange={handleInputChange}>
+          <option hidden value=''>Select Gender</option>
+          
+          <option className="form-control int"
+          id="Gender"
+          value="Male">Male</option>
+          <option className="form-control int"
+          id="Gender"
+          value="Female">Female</option>
+          <option className="form-control int"
+          id="Gender"
+          value="Others">Others</option>
+          </select>
+          </div>
             <div className="form-group">
               <label className="lab" htmlFor="Blood_Type" align="center">Blood Group</label>
               <input
@@ -157,6 +166,7 @@ const AddMember = () => {
                 className="form-control int"
                 id="Mobile_Number"
                 required
+                title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
                 value={member.Mobile_Number}
                 onChange={handleInputChange}
                 name="Mobile_Number"
@@ -193,15 +203,17 @@ const AddMember = () => {
                 className="form-control int"
                 id="Emer_Mobile"
                 required
+                title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
                 value={member.Emer_Mobile}
                 onChange={handleInputChange}
                 name="Emer_Mobile"
               />
             </div>
             <br />
-            <button  onClick={saveMember} class="btn btn-outline-info tempBtn">Submit</button>
+            <button   class="btn btn-outline-info tempBtn">Submit</button>
           </div>
       </Card>
+      </Form>
       </div>
       <img src={image1} id="imgt3" />
     </div>

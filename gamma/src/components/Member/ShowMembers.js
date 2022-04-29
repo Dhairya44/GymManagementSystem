@@ -144,11 +144,9 @@ const MemberList = () => {
     />
       <div class="" align="center" margin-left="auto" margin-right="auto" width="50%" vertical-align="center" textAlign='center'>
         <h4 className="lab">MEMBERS LIST</h4>
-        <br />
-        <Table striped hover variant="dark" class="table" align="center" dataAlign="center" style={{alignContent: 'center'}}>
+        <Table striped bordered hover variant="dark" class="table" align="center" dataAlign="center" style={{background: 'black', opacity: '1'}}>
           <thead class="thead-primary">
             <tr>
-
               <th>ID</th>
               <th>Name</th>
               <th>Phone</th>

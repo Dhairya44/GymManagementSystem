@@ -5,7 +5,11 @@ import image from "../../Images/home1.jpeg"
 import image2 from "../../Images/addimage2.png"
 import "../Member/Member.css";
 import { Card } from "react-bootstrap";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import { useRef } from "react";
 const AddEquipment = () => {
+  const form = useRef();
     const {id}=useParams();
     console.log(id);
   const initialEquipmentState = {
@@ -58,6 +62,7 @@ const AddEquipment = () => {
     <br />
     <br />
     <br />
+    <Form onSubmit={saveEquipment} ref={form} style={{width: "320px", padding: "30px", paddingTop: "100px"}}>
     <Card style={{ height: '60rem', width: '30rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '0', background: 'transparent', borderColor: 'transparent' }}>
         <div>
           <div className="form-group">
@@ -85,17 +90,32 @@ const AddEquipment = () => {
               name="Equipment_Kind"
             />
           </div>
-          <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Working_Status">Working Status</label>
-            <input
-              type="text"
-              className="form-control int"
-              id="Working_Status"
-              required
-              value={equipment.Working_Status}
-              onChange={handleInputChange}
-              name="Working_Status"
-            />
+          {
+          //   <div className="form-group">
+          //   <label className="lab" align = "center" htmlFor="Working_Status">Working Status</label>
+          //   <input
+          //     type="text"
+          //     className="form-control int"
+          //     id="Working_Status"
+          //     required
+          //     value={equipment.Working_Status}
+          //     onChange={handleInputChange}
+          //     name="Working_Status"
+          //   />
+          // </div>
+        }
+        <div className="form-group">
+          <label className="lab" align = "center" htmlFor="Working_Status">Working Status</label>
+        <select className="form-control int" name="Working_Status" required value={equipment.Working_Status} onChange={handleInputChange}>
+          <option hidden value=''>Select Status</option>
+          
+          <option className="form-control int"
+          id="Working_Status"
+          value="Working">Working</option>
+          <option className="form-control int"
+          id="Working_Status"
+          value="Non Working">Non Working</option>
+          </select>
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Exercise">Exercise</label>
@@ -111,13 +131,14 @@ const AddEquipment = () => {
           </div>
            <br />
            <br />
-          <button onClick={saveEquipment} className="btn btn-outline-info tempBtn3">
+          <button  className="btn btn-outline-info tempBtn3">
             Submit
           </button>
         </div>
       </Card>
+      </Form>
       </div>
-      <img src={image2} id="imgt3" />
+      <img src={image2} id="imgt4" />
     </div>
   );
 };

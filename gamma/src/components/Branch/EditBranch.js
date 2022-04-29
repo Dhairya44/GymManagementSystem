@@ -5,7 +5,11 @@ import image from "../../Images/home1.jpeg"
 import image2 from "../../Images/branch.png"
 import "../Member/Member.css";
 import { Card } from "react-bootstrap";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import { useRef } from "react";
 const Branch = props => {
+  const form = useRef();
     
     console.log(useParams());
   const { id } = useParams();
@@ -90,9 +94,10 @@ const Branch = props => {
   return (
     <div>
     <img src={image} id="imgt2" />
-    <div className="member-submit-form" id="member" >
+    <div className="member-submit-form" id="member3" >
     <br />
-    <Card style={{ height: '60rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '0', background: 'transparent', borderColor: 'transparent' }}>
+    <Form onSubmit={updateBranch} ref={form} style={{width: "320px", padding: "30px", paddingTop: "100px"}}>
+    <Card style={{ height: '45rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '30px', background: 'transparent', borderColor: 'transparent' }}>
     <div className="submit-form">
         <div>
           <div className="form-group">
@@ -135,10 +140,11 @@ const Branch = props => {
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Branch_Phone_Number">Branch Phone Number</label>
             <input
-              type="number"
+              type="tel"
               className="form-control int"
               id="Branch_Phone_Number"
               required
+              title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
               value={currentBranch.Branch_Phone_Number}
               onChange={handleInputChange}
               name="Branch_Phone_Number"
@@ -156,25 +162,44 @@ const Branch = props => {
               name="Manager_Name"
             />
           </div>
-          <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Gender">Gender</label>
-            <input
-              type="text"
-              className="form-control int"
-              id="Gender"
-              required
-              value={currentBranch.Gender}
-              onChange={handleInputChange}
-              name="Gender"
-            />
+          {
+          //   <div className="form-group">
+          //   <label className="lab" align = "center" htmlFor="Gender">Gender</label>
+          //   <input
+          //     type="text"
+          //     className="form-control int"
+          //     id="Gender"
+          //     required
+          //     value={currentBranch.Gender}
+          //     onChange={handleInputChange}
+          //     name="Gender"
+          //   />
+          // </div>
+        }
+        <div className="form-group">
+          <label className="lab" align = "center" htmlFor="Gender">Gender</label>
+        <select className="form-control int" name="Gender" required value={currentBranch.Gender} onChange={handleInputChange}>
+          <option hidden value=''>Select Gender</option>
+          
+          <option className="form-control int"
+          id="Gender"
+          value="Male">Male</option>
+          <option className="form-control int"
+          id="Gender"
+          value="Female">Female</option>
+          <option className="form-control int"
+          id="Gender"
+          value="Others">Others</option>
+          </select>
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Mobile_Number">Mobile Number</label>
             <input
-              type="number"
+              type="tel"
               className="form-control int"
               id="Mobile_Number"
               required
+              title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
               value={currentBranch.Mobile_Number}
               onChange={handleInputChange}
               name="Mobile_Number"
@@ -207,7 +232,7 @@ const Branch = props => {
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Password">Password</label>
             <input
-              type="number"
+              type="text"
               className="form-control int"
               id="Password"
               required
@@ -217,12 +242,13 @@ const Branch = props => {
             />
           </div>
           <br />
-          <button onClick={updateBranch} className="btn btn-outline-info tempBtn">
+          <button  className="btn btn-outline-info tempBtn">
             Submit
           </button>
         </div>
     </div>
     </Card>
+    </Form>
   </div>
   <img src={image2} id="imgt3" />
   </div>

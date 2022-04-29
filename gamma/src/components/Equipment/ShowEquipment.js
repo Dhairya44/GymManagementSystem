@@ -143,10 +143,8 @@ const EquipmentList = () => {
       }}
     />
       <div className="" align="center" margin-left="auto" margin-right="auto" width="50%" vertical-align="center">
-        <br />
         <h4 className="lab">Equipments List</h4>
-        <br />
-        <Table striped hover class="table" variant="dark" align="center" dataAlign="center" style={{}}>
+        <Table striped hover class="table" variant="dark" align="center" dataAlign="center" style={{background: 'black', opacity: '1'}}>
           <thead class="thead-primary">
             <tr>
 

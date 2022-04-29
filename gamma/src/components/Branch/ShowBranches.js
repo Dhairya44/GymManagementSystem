@@ -161,11 +161,9 @@ const Branch_ManagerList = () => {
         detectRetina: true,
       }}
     />
-      <div className="" align="center" margin-left="auto" margin-right="auto" width="50%" vertical-align="center">
+      <div className="" align="center" vertical-align="center">
         <h4 className="lab">BRANCH MANAGERS LIST</h4>
-        <br />
-
-        <Table striped class="table" bordered hover variant="dark" align="center" dataAlign="center" style={{ background: "black", opacity: "0.8", textAlign: "center", borderRadius: '30px', marginInlineStart: '1rem' }}>
+        <Table striped class="table" bordered hover variant="dark" align="center" dataAlign="center" style={{ background: "black", opacity: "0.8", textAlign: "center", borderRadius: '30px', marginInlineStart: '-7rem' }}>
           <thead class="thead-primary">
             <tr>
 

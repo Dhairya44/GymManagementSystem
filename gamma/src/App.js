@@ -35,12 +35,6 @@ import EditEquipment from "./components/Equipment/EditEquipment";
 import { useNavigate } from "react-router-dom";
 const App = () => {
   let navigate = useNavigate();
-  const [showDropdownMem, setShowDropdownMem] = useState(false);
-  const [showDropdownPay, setShowDropdownPay] = useState(false);
-  const [showDropdownTrain, setShowDropdownTrain] = useState(false);
-  const [showDropdownEquip, setShowDropdownEquip] = useState(false);
-  const [showDropdownBranch, setShowDropdownBranch] = useState(false);
-  const [showDropdownWor, setShowDropdownWor] = useState(false);
   const particlesInit = async (main) => {
     console.log(main);
 
@@ -138,8 +132,6 @@ const App = () => {
                   title="Member"
                   style={{ marginLeft: '56rem' }}
                   menuVariant="dark"
-                  onMouseLeave={() => setShowDropdownMem(false)}
-                  onMouseOver={() => setShowDropdownMem(true)}
 
                 >
 
@@ -166,8 +158,6 @@ const App = () => {
                       id="nav-dropdown-dark-example"
                       title="Payment"
                       menuVariant="dark"
-                      onMouseLeave={() => setShowDropdownPay(false)}
-                      onMouseOver={() => setShowDropdownPay(true)}
 
                     >
 

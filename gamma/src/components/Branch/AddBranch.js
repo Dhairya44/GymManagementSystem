@@ -4,7 +4,9 @@ import image from "../../Images/home1.jpeg"
 import image2 from "../../Images/branch.png"
 import "../Member/Member.css";
 import { Card } from "react-bootstrap";
-
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import { useRef } from "react";
 const Addbranch_manager = () => {
   const initialbranch_managerState = {
     Branch_ID:null,
@@ -20,6 +22,7 @@ const Addbranch_manager = () => {
     Password: ""
 
   };
+  const form = useRef();
   const [branch_manager, setbranch_manager] = useState(initialbranch_managerState);
   const [submitted, setSubmitted] = useState(false);
 
@@ -28,8 +31,8 @@ const Addbranch_manager = () => {
     setbranch_manager({ ...branch_manager, [name]: value });
   };
 
-  const savebranch_manager = () => {
-
+  const savebranch_manager = (e) => {
+    e.preventDefault();
     var data = {
         Branch_Name: branch_manager.Branch_Name,
         Branch_Location: branch_manager.Branch_Location,
@@ -65,7 +68,7 @@ const Addbranch_manager = () => {
           console.log(response.data);
         })
         .catch(e => {
-          console.log(e);
+          return (<alert>{e}</alert>);
         });
         setbranch_manager(initialbranch_managerState);
         window.location.reload();
@@ -79,14 +82,15 @@ const Addbranch_manager = () => {
   return (
     <div>
     <img src={image} id="imgt2" />
-    <div className="member-submit-form" id="member" >
+    <div className="member-submit-form" id="member3" >
     <br />
-    <Card style={{ height: '60rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '0', background: 'transparent', borderColor: 'transparent' }}>
+    <Form onSubmit={savebranch_manager} ref={form} style={{width: "320px", padding: "30px", paddingTop: "100px"}}>
+    <Card style={{ height: '45rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '30px', background: 'transparent', borderColor: 'transparent' }}>
     <div className="submit-form">
         <div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Branch_Name">Branch Name</label>
-            <input
+            <Input
               type="text"
               className="form-control int"
               id="title"
@@ -99,7 +103,7 @@ const Addbranch_manager = () => {
 
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Branch_Location">Branch Location</label>
-            <input
+            <Input
               type="text"
               className="form-control int"
               id="Branch_Location"
@@ -111,8 +115,8 @@ const Addbranch_manager = () => {
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Branch_Email">Branch Email</label>
-            <input
-              type="text"
+            <Input
+              type="email"
               className="form-control int"
               id="Branch_Email"
               required
@@ -123,11 +127,12 @@ const Addbranch_manager = () => {
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Branch_Phone_Number">Branch Phone Number</label>
-            <input
-              type="number"
+            <Input
+              type="tel"
               className="form-control int"
               id="Branch_Phone_Number"
               required
+              title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
               value={branch_manager.Branch_Phone_Number}
               onChange={handleInputChange}
               name="Branch_Phone_Number"
@@ -135,7 +140,7 @@ const Addbranch_manager = () => {
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Manager_Name">Manager Name</label>
-            <input
+            <Input
               type="text"
               className="form-control int"
               id="Manager_Name"
@@ -145,25 +150,44 @@ const Addbranch_manager = () => {
               name="Manager_Name"
             />
           </div>
-          <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Gender">Gender</label>
-            <input
-              type="text"
-              className="form-control int"
-              id="Gender"
-              required
-              value={branch_manager.Gender}
-              onChange={handleInputChange}
-              name="Gender"
-            />
+          {
+          //   <div className="form-group">
+          //   <label className="lab" align = "center" htmlFor="Gender">Gender</label>
+          //   <Input
+          //     type="text"
+          //     className="form-control int"
+          //     id="Gender"
+          //     required
+          //     value={branch_manager.Gender}
+          //     onChange={handleInputChange}
+          //     name="Gender"
+          //   />
+          // </div>
+        }
+        <div className="form-group">
+          <label className="lab" align = "center" htmlFor="Gender">Gender</label>
+        <select className="form-control int" name="Gender" required value={branch_manager.Gender} onChange={handleInputChange}>
+          <option hidden value=''>Select Gender</option>
+          
+          <option className="form-control int"
+          id="Workout_Name"
+          value="Male">Male</option>
+          <option className="form-control int"
+          id="Workout_Name"
+          value="Female">Female</option>
+          <option className="form-control int"
+          id="Workout_Name"
+          value="Others">Others</option>
+          </select>
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Mobile_Number">Mobile Number</label>
-            <input
-              type="number"
+            <Input
+              type="tel"
               className="form-control int"
               id="Mobile_Number"
               required
+              title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
               value={branch_manager.Mobile_Number}
               onChange={handleInputChange}
               name="Mobile_Number"
@@ -171,7 +195,7 @@ const Addbranch_manager = () => {
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Address">Address</label>
-            <input
+            <Input
               type="text"
               className="form-control int"
               id="Address"
@@ -183,8 +207,8 @@ const Addbranch_manager = () => {
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Manager_Email">Manager Email</label>
-            <input
-              type="text"
+            <Input
+              type="email"
               className="form-control int"
               id="Manager_Email"
               required
@@ -195,8 +219,8 @@ const Addbranch_manager = () => {
           </div>
           <div className="form-group">
             <label className="lab" align = "center" htmlFor="Password">Password</label>
-            <input
-              type="number"
+            <Input
+              type="text"
               className="form-control int"
               id="Password"
               required
@@ -206,12 +230,13 @@ const Addbranch_manager = () => {
             />
           </div>
           <br />
-          <button onClick={savebranch_manager} className="btn btn-outline-info tempBtn">
+          <button  className="btn btn-outline-info tempBtn">
             Submit
           </button>
         </div>
     </div>
     </Card>
+    </Form>
   </div>
   <img src={image2} id="imgt3" />
   </div>

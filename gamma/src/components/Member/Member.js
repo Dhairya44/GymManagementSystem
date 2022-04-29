@@ -5,10 +5,11 @@ import "./Member.css";
 import image from "../../Images/home1.jpeg"
 import image1 from "../../Images/addimage.png"
 import { Card } from "react-bootstrap";
-
+import Form from "react-validation/build/form";
+import { useRef } from "react";
 
 const Member = props => {
-    
+    const form = useRef();
     console.log(useParams());
   const { Mem_ID } = useParams();
 //  ManagerDataService.get(Mem_ID).then(response=>console.log(response));
@@ -96,9 +97,11 @@ const Member = props => {
 
   return (
     <div>
-    <div className="member-submit-form" id="member">
+    <div className="member-submit-form" id="member3">
       <img src={image} id="imgt2" />
-      <Card style={{ height: '60rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '30px', background: 'transparent', borderColor: 'transparent' }}>
+      <Form onSubmit={updateMember} ref={form} style={{width: "320px", padding: "30px", paddingTop: "100px"}}>
+
+      <Card style={{ height: '45rem', width: '50rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '30px', background: 'transparent', borderColor: 'transparent' }}>
       {currentMember ? (
         <div>
             <div className="form-group">
@@ -151,17 +154,21 @@ const Member = props => {
               />
             </div>
             <div className="form-group">
-              <label className="lab" align="center" htmlFor="Gender">Gender</label>
-              <input
-                type="text"
-                className="form-control int"
-                id="Gender"
-                required
-                value={currentMember.Gender}
-                onChange={handleInputChange}
-                name="Gender"
-              />
-            </div>
+          <label className="lab" align = "center" htmlFor="Gender">Gender</label>
+        <select className="form-control int" name="Gender" required value={currentMember.Gender} onChange={handleInputChange}>
+          <option hidden value=''>Select Gender</option>
+          
+          <option className="form-control int"
+          id="Gender"
+          value="Male">Male</option>
+          <option className="form-control int"
+          id="Gender"
+          value="Female">Female</option>
+          <option className="form-control int"
+          id="Gender"
+          value="Others">Others</option>
+          </select>
+          </div>
             <div className="form-group">
               <label className="lab" align="center" htmlFor="Blood_Type">Blood Group</label>
               <input
@@ -177,11 +184,13 @@ const Member = props => {
             <div className="form-group">
               <label className="lab" align="center" htmlFor="Mobile_Number">Mobile Number</label>
               <input
-                type="number"
+                type="tel"
                 className="form-control int"
                 id="Mobile_Number"
                 required
+                title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
                 value={currentMember.Mobile_Number}
+                
                 onChange={handleInputChange}
                 name="Mobile_Number"
               />
@@ -213,10 +222,11 @@ const Member = props => {
             <div className="form-group">
               <label className="lab" align="center" htmlFor="Emer_Mobile">Emerergency Contact</label>
               <input
-                type="number"
+                type="tel"
                 className="form-control int"
                 id="Emer_Mobile"
                 required
+                title="Please Enter Valid Mobile Number" pattern="[1-9]{1}[0-9]{9}"
                 value={currentMember.Emer_Mobile}
                 onChange={handleInputChange}
                 name="Emer_Mobile"
@@ -232,6 +242,7 @@ const Member = props => {
         </div>
       )}
       </Card>
+      </Form>
       </div>
       <img src={image1} id="imgt3" />
     </div>

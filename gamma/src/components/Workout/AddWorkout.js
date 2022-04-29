@@ -11,7 +11,8 @@ const AddWorkout = () => {
     Workout_ID:null,
     Workout_Name:"",
     Workout_DietChart:"",
-    Working_Duration:""
+    Working_Duration:"",
+    Workout_Price:"",
   };
   const [workout, setWorkout] = useState(initialWorkoutState);
   const [submitted, setSubmitted] = useState(false);
@@ -25,7 +26,8 @@ const AddWorkout = () => {
     var data = {
       Workout_Name:workout.Workout_Name,
       Workout_DietChart:workout.Workout_DietChart,
-      Working_Duration:workout.Working_Duration
+      Working_Duration:workout.Working_Duration,
+      Workout_Price:workout.Workout_Price
     };
 
     if(window.confirm("Want to submit?")){
@@ -35,7 +37,8 @@ const AddWorkout = () => {
               Workout_ID:response.data.Workout_ID,
               Workout_Name:response.data.Workout_Name,
               Workout_DietChart:response.data.Workout_DietChart,
-              Working_Duration:response.data.Working_Duration
+              Working_Duration:response.data.Working_Duration,
+              Workout_Price:response.data.Workout_Price
           });
           console.log(response.data);
         })
@@ -60,11 +63,14 @@ const AddWorkout = () => {
     <br />
     <br />
     <br />
+    <br />
+    <br />
+    <br />
     <Card style={{ height: '60rem', width: '30rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '0', background: 'transparent', borderColor: 'transparent' }}>
     <div className="submit-form">
         <div>
           <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Workout_Name">Workout_Name</label>
+            <label className="lab" align = "center" htmlFor="Workout_Name">Name</label>
             <input
               type="text"
               className="form-control int"
@@ -77,7 +83,7 @@ const AddWorkout = () => {
           </div>
 
           <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Workout_DietChart">Workout_DietChart</label>
+            <label className="lab" align = "center" htmlFor="Workout_DietChart">DietChart</label>
             <input
               type="text"
               className="form-control int"
@@ -89,9 +95,9 @@ const AddWorkout = () => {
             />
           </div>
           <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Working_Duration">Working_Duration</label>
+            <label className="lab" align = "center" htmlFor="Working_Duration">Duration (in Months)</label>
             <input
-              type="text"
+              type="number"
               className="form-control int" 
               id="Working_Duration"
               required
@@ -101,6 +107,18 @@ const AddWorkout = () => {
             />
           </div>        
           <br />
+          <div className="form-group">
+            <label className="lab" align = "center" htmlFor="Workout_Price">Price (in Rs)</label>
+            <input
+              type="number"
+              className="form-control int" 
+              id="Workout_Price"
+              required
+              value={workout.Workout_Price}
+              onChange={handleInputChange}
+              name="Workout_Price"
+            />
+          </div>
            <br />      
           <button onClick={saveWorkout} className="btn btn-outline-info tempBtn3">
             Submit

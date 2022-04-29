@@ -8,6 +8,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import image from "../Images/home.jpeg"
 import "./Login.css"
+import { useEffect } from "react";
 const required = (value) => {
   if (!value) {
     return (
@@ -17,6 +18,7 @@ const required = (value) => {
     );
   }
 };
+
 
 const Login = () => {
   let navigate = useNavigate();
@@ -33,7 +35,6 @@ const Login = () => {
     const manager_Email = e.target.value;
     setManager_Email(manager_Email);
   };
-  
   const particlesInit = async (main) => {
     console.log(main);
     await loadFull(main);
@@ -43,6 +44,7 @@ const Login = () => {
     console.log(container);
   };
 
+
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
@@ -50,7 +52,11 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
+    console.log(e.currentTarget[1].value);
+    const password = e.currentTarget[1].value;
+    setPassword(password);
+    const manager_Email = e.currentTarget[0].value;
+    setManager_Email(manager_Email);
     setMessage("");
     setLoading(true);
 
@@ -91,14 +97,13 @@ const Login = () => {
   return (
     <div className="containerx">
       <img src={image} id="imgt" />
-      <Particles
+     <Particles
       id="tsparticles"
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
         zIndex: -5,
         zLayers:0.1,
-        
         fpsLimit: 1000,
         interactivity: {
           events: {
@@ -166,7 +171,6 @@ const Login = () => {
         detectRetina: true,
       }}
     />
-      
       {/* <br />
       <br />
       <br /> */}
@@ -185,8 +189,8 @@ const Login = () => {
             className="login__input"
             name="manager_Email"
             placeholder="Email"
+            
             value={manager_Email}
-            onChange={onChangeManager_Email}
             validations={[required]}
           />
 				</div>
@@ -197,8 +201,8 @@ const Login = () => {
             className="login__input"
             name="password"
             placeholder="Password"
+            
             value={password}
-            onChange={onChangePassword}
             validations={[required]}
           />
 				</div>

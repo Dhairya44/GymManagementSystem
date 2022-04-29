@@ -144,10 +144,8 @@ const WorkoutList = () => {
       }}
     />
       <div className="" align="center" margin-left="auto" margin-right="auto" width="50%" vertical-align="center">
-      <br/>
         <h4 className="lab">WORKOUTS LIST</h4>
-        <br/>
-        <Table striped bordered class="table" hover variant="dark" align="center" dataAlign="center" style={{}}>
+        <Table striped class="table" bordered hover variant="dark" align="center" dataAlign="center" style={{ background: "black", opacity: "0.8", textAlign: "center", borderRadius: '30px', marginInlineStart: '-2rem' }}>
           <thead class="thead-primary">
             <tr>
 
@@ -155,6 +153,7 @@ const WorkoutList = () => {
               <th>Workout Name</th>
               <th>Diet Chart</th>
               <th>Duration</th>
+              <th>Price</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -166,7 +165,7 @@ const WorkoutList = () => {
               <td>{workout.Workout_Name}</td>
               <td>{workout.Workout_DietChart}</td>
               <td>{workout.Working_Duration}</td>
-
+              <td>{workout.Workout_Price}</td>
               <td>
                 <Link
                   to={"/editworkout/" + workout.Workout_ID}

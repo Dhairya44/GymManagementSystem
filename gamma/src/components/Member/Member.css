@@ -43,8 +43,14 @@
     font-family: Raleway, sans-serif;
     color: white;
     font-weight: bold;
-    width: 400px;
+    margin-left: 300px;
+    /* width: 400px; */
     font-size: 30px;
+}
+
+.prof2 {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #imgt {
@@ -60,7 +66,7 @@
     position: relative;
     margin-left: 0px;
     opacity: 0.7;
-    margin-top: -1350px;
+    margin-top: -800px;
     width: 30%;
     height: 30%;
 }
@@ -104,13 +110,19 @@
 }
 
 #member {
-    margin-top: -50px;
-    margin-left: 550px;
+    margin-top: -125px;
+    margin-left: 475px;
+    width: 430px;
+}
+
+#member3 {
+    margin-top: -175px;
+    margin-left: 475px;
     width: 430px;
 }
 
 #member2 {
-    margin-top: -75px;
+    margin-top: -150px;
     margin-left: 750px;
     width: 430px;
 }
@@ -189,8 +201,6 @@
 }
 
 .pqy {
-    background: rgb(106, 26, 26);
-    background: linear-gradient(90deg, rgba(106, 26, 26, 1), rgba(62, 26, 40, 1), rgba(31, 59, 83, 1));
     left: 0;
     margin-left: 0px;
     margin-right: 7px;

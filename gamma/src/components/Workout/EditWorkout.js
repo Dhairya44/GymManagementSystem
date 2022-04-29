@@ -7,6 +7,7 @@ import "../Member/Member.css";
 import { Card } from "react-bootstrap";
 const Workout = props => {
     
+
     console.log(useParams());
   const { id } = useParams();
 //  WorkoutService.get(Workout_ID).then(response=>console.log(response));
@@ -22,7 +23,8 @@ const Workout = props => {
     Workout_ID:null,
     Workout_Name:"",
     Workout_DietChart:"",
-    Working_Duration:""
+    Working_Duration:"",
+    Workout_Price:""
   };
   const [currentWorkout, setCurrentWorkout] = useState(initialWorkoutState);
   const [message, setMessage] = useState("");
@@ -52,8 +54,8 @@ const Workout = props => {
     var data = {
         Workout_Name:currentWorkout.Workout_Name,
         Workout_DietChart:currentWorkout.Workout_DietChart,
-        Working_Duration:currentWorkout.Working_Duration
-
+        Working_Duration:currentWorkout.Working_Duration,
+        Workout_Price:currentWorkout.Workout_Price
     };
     WorkoutService.updateWorkout(currentWorkout.Workout_ID, data)
       .then(response => {
@@ -86,11 +88,14 @@ const Workout = props => {
     <br />
     <br />
     <br />
+    <br />
+    <br />
+    <br />
     <Card style={{ height: '60rem', width: '30rem', marginBlockStart: '0rem', textAlign: 'left',boxShadow: 'none' , alignContent: 'center', alignItems: 'center', top: '0', background: 'transparent', borderColor: 'transparent' }}>
     <div className="submit-form">
         <div>
           <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Workout_Name">Workout_Name</label>
+            <label className="lab" align = "center" htmlFor="Workout_Name">Name</label>
             <input
               type="text"
               className="form-control int"
@@ -103,7 +108,7 @@ const Workout = props => {
           </div>
 
           <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Workout_DietChart">Workout_DietChart</label>
+            <label className="lab" align = "center" htmlFor="Workout_DietChart">DietChart</label>
             <input
               type="text"
               className="form-control int"
@@ -115,15 +120,27 @@ const Workout = props => {
             />
           </div>
           <div className="form-group">
-            <label className="lab" align = "center" htmlFor="Working_Duration">Working_Duration</label>
+            <label className="lab" align = "center" htmlFor="Working_Duration">Duration (in months)</label>
             <input
-              type="text"
+              type="number"
               className="form-control int" 
               id="Working_Duration"
               required
               value={currentWorkout.Working_Duration}
               onChange={handleInputChange}
               name="Working_Duration"
+            />
+          </div>
+          <div className="form-group">
+            <label className="lab" align = "center" htmlFor="Workout_Price">Price (in Rs)</label>
+            <input
+              type="number"
+              className="form-control int" 
+              id="Workout_Price"
+              required
+              value={currentWorkout.Workout_Price}
+              onChange={handleInputChange}
+              name="Workout_Price"
             />
           </div>        
           <br />
